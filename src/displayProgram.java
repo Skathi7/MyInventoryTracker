@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 
 public class displayProgram {
 	private JFrame frame;
@@ -29,10 +30,13 @@ public class displayProgram {
 	private JPanel panDisplay = new JPanel();
 	private JTabbedPane tabManInv = new JTabbedPane(JTabbedPane.TOP);
 	private JPanel tabAddInv = new JPanel();
+	private JLabel lblAddInvHeader = new JLabel("Here new inventory can be added. Please add it's name and number below.");
+	private JLabel lblItemName = new JLabel("Item Name");
+	private JLabel lblItemNum = new JLabel("Item number");
+	private JTextField textItemName;
+	private JTextField tfItemNum;
 
-	/**
-	 * Launch the application.
-	 */
+	 //Launch the application.
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -164,7 +168,6 @@ public class displayProgram {
 		panMenu.setLayout(gl_panMenu);
 		panChanging.setLayout(new CardLayout(0, 0));
 		
-
 		panHome.setBackground(new Color(192, 192, 192));
 		panChanging.add(panHome, "pHome");
 
@@ -183,9 +186,50 @@ public class displayProgram {
 		panChanging.add(panDisplay, "panDisplayCons");
 		
 		panChanging.add(tabManInv, "tabManInvCons");
-		tabAddInv.setBackground(Color.GREEN);//Setting the color of the tab's background
+		tabAddInv.setBackground(Color.LIGHT_GRAY);//Setting the color of the tab's background
 		
 		tabManInv.addTab("Add Inventory", null, tabAddInv, null);//Setting the name of the tab
+		
+		lblAddInvHeader.setForeground(Color.BLACK);
+		lblAddInvHeader.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		
+		textItemName = new JTextField();
+		textItemName.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textItemName.setColumns(10);
+		
+		tfItemNum = new JTextField();
+		tfItemNum.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		tfItemNum.setColumns(10);
+		GroupLayout gl_tabAddInv = new GroupLayout(tabAddInv);
+		gl_tabAddInv.setHorizontalGroup(
+			gl_tabAddInv.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_tabAddInv.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_tabAddInv.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblAddInvHeader)
+						.addComponent(lblItemName)
+						.addComponent(lblItemNum)
+						.addGroup(gl_tabAddInv.createParallelGroup(Alignment.TRAILING, false)
+							.addComponent(tfItemNum, Alignment.LEADING)
+							.addComponent(textItemName, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(141, Short.MAX_VALUE))
+		);
+		gl_tabAddInv.setVerticalGroup(
+			gl_tabAddInv.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_tabAddInv.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblAddInvHeader)
+					.addGap(18)
+					.addComponent(lblItemName)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(textItemName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(20)
+					.addComponent(lblItemNum)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(tfItemNum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(173, Short.MAX_VALUE))
+		);
+		tabAddInv.setLayout(gl_tabAddInv);
 				
 		lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWelcome.setFont(new Font("Castellar", Font.PLAIN, 35));
