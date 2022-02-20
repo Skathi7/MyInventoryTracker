@@ -1,12 +1,15 @@
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.SwingConstants;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.CardLayout;
@@ -35,6 +38,7 @@ public class displayProgram {
 	private JLabel lblItemNum = new JLabel("Item number");
 	private JTextField textItemName;
 	private JTextField tfItemNum;
+	private JLabel lblBearIcon;
 
 	 //Launch the application.
 	public static void main(String[] args) {
@@ -170,15 +174,23 @@ public class displayProgram {
 		
 		panHome.setBackground(new Color(192, 192, 192));
 		panChanging.add(panHome, "pHome");
-
+		
+		lblBearIcon = new JLabel("");//Bear icon on the main page
+		Image img = new ImageIcon(this.getClass().getResource("/bear.png")).getImage();
+		lblBearIcon.setIcon(new ImageIcon(img));
+		
 		GroupLayout gl_panHome = new GroupLayout(panHome);
 		gl_panHome.setHorizontalGroup(
 			gl_panHome.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 574, Short.MAX_VALUE)
+				.addGroup(Alignment.TRAILING, gl_panHome.createSequentialGroup()
+					.addContainerGap(374, Short.MAX_VALUE)
+					.addComponent(lblBearIcon))
 		);
 		gl_panHome.setVerticalGroup(
 			gl_panHome.createParallelGroup(Alignment.TRAILING)
-				.addGap(0, 347, Short.MAX_VALUE)
+				.addGroup(gl_panHome.createSequentialGroup()
+					.addContainerGap(247, Short.MAX_VALUE)
+					.addComponent(lblBearIcon))
 		);
 		panHome.setLayout(gl_panHome);
 		panDisplay.setBackground(Color.CYAN);//Setting the color of the display panel's background
