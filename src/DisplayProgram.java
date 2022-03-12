@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 
 public class DisplayProgram {
 	private JFrame frame;
-	private JLabel lblWelcome = new JLabel("The Invetory Manager");
+	private JLabel lblWelcome = new JLabel("The Inventory Manager");
 	private JButton btnHome = new JButton("Home");
 	private JButton btnManInv = new JButton("Manage");
 	private JButton btnDisplay = new JButton("Display");
