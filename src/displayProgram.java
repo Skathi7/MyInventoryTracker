@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-public class displayProgram {
+public class DisplayProgram {
 	private JFrame frame;
 	private JLabel lblWelcome = new JLabel("The Invetory Manager");
 	private JButton btnHome = new JButton("Home");
@@ -39,13 +39,16 @@ public class displayProgram {
 	private JTextField textItemName;
 	private JTextField tfItemNum;
 	private JLabel lblBearIcon;
+	private JButton btnAddSubmit;
 
 	 //Launch the application.
 	public static void main(String[] args) {
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					displayProgram window = new displayProgram();
+					DisplayProgram window = new DisplayProgram();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,12 +58,15 @@ public class displayProgram {
 	}
 
 	// Create the application.
-	public displayProgram() {
+	public DisplayProgram() {
 		initialize();
+		
 	}
 
 	// Initialize the contents of the frame.
 	private void initialize() {
+		ProcessActions ProcessActions = new ProcessActions(); 
+		
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(135, 206, 235));
 		frame.setBounds(100, 100, 742, 510);
@@ -212,6 +218,13 @@ public class displayProgram {
 		tfItemNum = new JTextField();
 		tfItemNum.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		tfItemNum.setColumns(10);
+		
+		btnAddSubmit = new JButton("Submit");
+		btnAddSubmit.addActionListener(new ActionListener() {//Adds item to the inventory. Still in progress!
+			public void actionPerformed(ActionEvent e) {
+				ProcessActions.addToInventory();//Adds the given items to the database
+			}
+		});
 		GroupLayout gl_tabAddInv = new GroupLayout(tabAddInv);
 		gl_tabAddInv.setHorizontalGroup(
 			gl_tabAddInv.createParallelGroup(Alignment.LEADING)
@@ -223,7 +236,8 @@ public class displayProgram {
 						.addComponent(lblItemNum)
 						.addGroup(gl_tabAddInv.createParallelGroup(Alignment.TRAILING, false)
 							.addComponent(tfItemNum, Alignment.LEADING)
-							.addComponent(textItemName, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(textItemName, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnAddSubmit)))
 					.addContainerGap(141, Short.MAX_VALUE))
 		);
 		gl_tabAddInv.setVerticalGroup(
@@ -239,7 +253,9 @@ public class displayProgram {
 					.addComponent(lblItemNum)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(tfItemNum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(173, Short.MAX_VALUE))
+					.addGap(31)
+					.addComponent(btnAddSubmit)
+					.addContainerGap(119, Short.MAX_VALUE))
 		);
 		tabAddInv.setLayout(gl_tabAddInv);
 				
