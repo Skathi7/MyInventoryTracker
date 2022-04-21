@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Image;
 
@@ -15,6 +17,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.CardLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
@@ -222,7 +226,13 @@ public class DisplayProgram {
 		btnAddSubmit = new JButton("Submit");
 		btnAddSubmit.addActionListener(new ActionListener() {//Adds item to the inventory. Still in progress!
 			public void actionPerformed(ActionEvent e) {
-				ProcessActions.addToInventory();//Adds the given items to the database
+					try {
+						ProcessActions.addToInventory(textItemName);
+					} catch (FileNotFoundException | UnsupportedEncodingException e1) {
+						JOptionPane.showMessageDialog(null, "<html><u>There is a problem! See the following stack trace </u></html>\n\n" + e1, "Error", JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+					}
+
 			}
 		});
 		GroupLayout gl_tabAddInv = new GroupLayout(tabAddInv);
